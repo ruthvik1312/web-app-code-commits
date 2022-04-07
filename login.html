@@ -1,0 +1,54 @@
+{% extends "layout.html" %}
+{% block content %}
+  <div class="text-center">
+    {% if error %}
+      <p class=error><strong>Error:</strong> {{ error }}
+    {% endif %}
+        {% with messages = get_flashed_messages() %}
+    {% if messages %}
+      <ul class=flashes>
+        {% for message in messages %}
+          <li>{{ message }}</li>
+        {% endfor %}
+      </ul>
+  {% endif %}
+  {% endwith %}
+    {% if not users %}
+      <div>
+        <form method="POST" action="#" id="login">
+          <h1>Login</h1>
+          <div>
+            <label for="username">Username: </label>
+            <input type="text" name="username" id="username" maxlength="20" required> 
+          </div>
+          <div>
+            <label for="password">Password: </label>
+            <input type="password" name="password" id="password" maxlength="20" required> 
+          </div>
+          <div>
+            <button type="submit">Submit</button>
+          </div>
+       </form>
+      </div>
+    {% endif %}
+
+    {%if users%}
+      {% if injection %}
+        <h1>Injection Succeful!!!!<h2>
+        <h2>Here is the Registered Users List</h2>
+      {% else %}
+        <h2> Hello {{ user }} </h2>
+      {% endif %}
+      <table>
+        {%for user in users%}
+          <tr>
+            <td>Username = {{ user[0] }} &emsp;</td> &nbsp &nbsp;  
+            <td> Password = {{ user[1] }} </td>
+          </tr>   
+        {%endfor%}
+      </table>
+    {%endif%}
+
+  </div>
+  
+{% endblock %}

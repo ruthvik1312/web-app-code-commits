@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="text-center">
+	<h1>ASEW</h1>
+	<h2>A Simple Exploitable Website</h2>
+	<h5><i>"Hey there. This website contains vulnerable code. Seek and ye shall find!"</i></h5>
+	{% if error %}
+    	<p class=error><strong>Error:</strong> {{ error }}
+  	{% endif %}
+  	<table>
+	{% for user, post in posts %}
+	  <tr>
+	    <td> {{ post }} - {{ user }}</td>
+	  </tr>
+	  <br>
+	{%endfor%}
+	</table>
+</div>
+{% endblock %}

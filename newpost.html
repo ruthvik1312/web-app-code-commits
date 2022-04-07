@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+{% block header %}
+  <h1>{% block title %}New Post{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+    {% if error %}
+      <p class=error><strong>Error:</strong> {{ error }}
+    {% endif %}
+    {% with messages = get_flashed_messages() %}
+	    {% if messages %}
+	      <ul class=flashes>
+	        {% for message in messages %}
+	          <li>{{ message }}</li>
+	        {% endfor %}
+	      </ul>
+		{% endif %}
+	{% endwith %}
+
+	<h2>Make a new post</h2>
+
+	<form method="post">
+		<label for="post">Post</label>
+		<textarea name="post" id="post"  rows="50" cols="50">Create a new post here.</textarea>
+		<input type="submit" value="Save">
+	</form>
+
+{% endblock %}

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>A vulnerable website</title>
+  <link rel="stylesheet" href="static/main.css">
+</head>
+
+<body>
+  <ul type='nav'>
+    <li type='nav'><a type='nav' href= {{ url_for('index') }} >Home</a></li>
+    {% if session['logged_in'] %}
+      <li type='nav'><a type='nav' href= {{ url_for('logout') }} >Logout</a></li>
+    {% else %}
+      <li type='nav'><a type='nav' href= {{ url_for('login') }} >Login</a></li>
+    {% endif %}
+    
+    <li type='nav'><a type='nav' href= {{ url_for('make_post') }}>New Post</a></li>
+  </ul>
+  <div class="container">
+    {% block content %}
+      {% endblock %}
+  </div>
+</body>
+</html>
